@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KilimoKe Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white dark:bg-black text-zinc-800 dark:text-white">
+    <nav class="bg-green-500 dark:bg-zinc-900 py-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <a href="#" class="font-bold text-lg">KilimoKe</a>
+        <div class="hidden md:flex space-x-4">
+          <a href="Home.php" class="hover:underline">Home</a>
+          <a href="ViewCart.html" class="hover:underline">ViewCart</a>
+          <a href="Login.html" class="hover:underline">Login</a>
+          <a href="ContactUs.html" class="hover:underline">Contact Us</a>
+          <a href="AboutUs.html" class="hover:underline">About Us</a>
+        </div>
+      </div>
+    </nav>
+        
+    <div class="min-h-screen flex items-center justify-center bg-zinc-100 dark:bg-zinc-900">
+        <div class="flex flex-col md:flex-row gap-8 w-full max-w-4xl"> <!-- Increased container width -->
+            <!-- User Login Form -->
+            <div class="bg-white dark:bg-zinc-800 p-8 rounded-lg shadow-lg w-full md:w-1/2"> <!-- Adjusted width for each form -->
+                <h2 class="text-2xl font-bold mb-6 text-zinc-900 dark:text-white">KilimoKe Login</h2>
+                <form action="login.php" method="POST">
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2" for="email">Email Address</label>
+                        <input class="form-input mt-1 block w-full rounded-md border-zinc-300 dark:border-zinc-700 text-black dark:text-white bg-white dark:bg-black"
+                               type="email"
+                               id="email"
+                               name="email"
+                               placeholder="Enter your email"
+                               required
+                        />
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2" for="password">Password</label>
+                        <div class="relative">
+                            <input class="form-input mt-1 block w-full rounded-md border-zinc-300 dark:border-zinc-700 text-black dark:text-white bg-white dark:bg-black"
+                                   type="password"
+                                   id="password"
+                                   name="password"
+                                   placeholder="Enter your password"
+                                   required
+                            />
+                            <button type="button" class="absolute inset-y-0 right-0 px-3 py-2 focus:outline-none" onclick="togglePasswordVisibility()">
+                                <svg class="h-5 w-5 text-green-500 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.5355 8.46447C16.9065 9.83546 16.9065 11.8645 15.5355 13.2355C14.1645 14.6065 12.1355 14.6065 10.7645 13.2355M19.8787 4.12132C18.2929 2.53553 15.7071 2.53553 14.1213 4.12132L12 6.24264L9.87868 4.12132C8.29289 2.53553 5.70711 2.53553 4.12132 4.12132C2.53553 5.70711 2.53553 8.29289 4.12132 9.87868L6.24264 12L4.12132 14.1213C2.53553 15.7071 2.53553 18.2929 4.12132 19.8787C5.70711 21.4645 8.29289 21.4645 9.87868 19.8787L12 17.7574L14.1213 19.8787C15.7071 21.4645 18.2929 21.4645 19.8787 19.8787C21.4645 18.2929 21.4645 15.7071 19.8787 14.1213L17.7574 12L19.8787 9.87868C21.4645 8.29289 21.4645 5.70711 19.8787 4.12132Z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14C11.6569 14 13 12.6569 13 11C13 9.34315 11.6569 8 10 8C8.34315 8 7 9.34315 7 11C7 12.6569 8.34315 14 10 14Z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mb-6">
+                        <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                                type="submit"
+                        >
+                            Sign In
+                        </button>
+                        <a class="text-green-500 hover:text-green-600 dark:text-green-400 dark:hover:text-green-300"
+                           href="ForgotPassword.html"
+                        >Forgot Password?</a>
+                    </div>
+                </form>
+    
+                <p class="text-center text-zinc-700 dark:text-zinc-300">
+                    Don't have an account?
+                    <a class="text-green-500 hover:text-green-600 dark:text-green-400 dark:hover:text-green-300"
+                       href="Registration.html"
+                    >Sign Up</a>
+                </p>
+            </div>
+    
+            <!-- Divider -->
+            <div class="border-l border-zinc-300 dark:border-zinc-600"></div> <!-- Divider line -->
+    
+            <!-- Admin Login Form -->
+            <div class="bg-white dark:bg-zinc-800 p-8 rounded-lg shadow-lg w-full md:w-1/2"> <!-- Adjusted width for each form -->
+                <h2 class="text-2xl font-bold mb-6 text-zinc-900 dark:text-white text-center">Admin Login</h2>
+                <form action="admin_login.php" method="POST">
+                    <div class="mb-4">
+                        <label for="admin_username" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">Username</label>
+                        <input type="text" id="admin_username" name="username" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-black dark:text-white">
+                    </div>
+                    <div class="mb-6">
+                        <label for="admin_password" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">Password</label>
+                        <input type="password" id="admin_password" name="password" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-black dark:text-white">
+                    </div>
+                    <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700">Login</button>
+                    <p class="mt-4 text-center">Not an admin? <a href="register_admin.html" class="text-green-600 hover:underline">Admin Sign Up</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    
+    <footer class="bg-zinc-800 text-white py-8">
+        <div class="container mx-auto px-4 flex flex-wrap justify-between">
+            <div class="w-full md:w-1/4 mb-8 md:mb-0">
+                <h2 class="text-xl font-bold mb-4">About Us</h2>
+                <img src="Images/16cb1ad44488d21a13f74756c54d655d.jpg" alt="KilimoKe Logo" class="mb-1" />
+                <p class="font-semibold">KilimoKe</p>
+                <p>P.O. Box 14133 - 00800 Nairobi, Kenya</p>
+                <div class="flex space-x-4 mt-4">
+                    <a href="https://web.facebook.com/?_rdc=1&_rdr" aria-label="Facebook"
+                       ><img src="Images/660bcb3e9408cfa1747d2d6e4c8c4526.png" alt="Facebook"
+                    /></a>
+                    <a href="https://x.com/?lang=en" aria-label="Twitter"><img src="Images/F1x5VdQX0AA9Sgt.jpeg" alt="Twitter" /></a>
+                    <a href="https://www.instagram.com/" aria-label="Instagram"
+                       ><img src="Images/Instagram_logo_2016.svg.png" alt="Instagram"
+                    /></a>
+                    <a href="https://ke.linkedin.com/" aria-label="LinkedIn"
+                       ><img src="Images/linkedin-400850_640-1.webp" alt="LinkedIn"
+                    /></a>
+                </div>
+            </div>
+
+            <div class="w-full md:w-1/4 mb-8 md:mb-0">
+                <h2 class="text-xl font-bold mb-4">Latest Tweets</h2>
+                <p> - Tupigie rununu, we are ready to take your farming to another level. </p>
+                <p> - Products zetu ni legit. </p>
+                <p> - We do deliveries all over the country. </p>
+              </div>
+          
+              <div class="w-full md:w-1/4 mb-8 md:mb-0">
+                <h2 class="text-xl font-bold mb-4">Latest Posts</h2>
+                <p> - Flooding in the western region of the country. </p>
+                <p> - Imported Fertilizer from Russia goes missing. </p>
+                <p> - Farmers in Central Kenya expected to have a bumper harvest this season. </p>
+                <p> - Irrigation schemes become a norm in the North Eastern regions of Kenya. </p>
+              </div>
+          
+            <div class="w-full md:w-1/4 mb-8 md:mb-0">
+                <h2 class="text-xl font-bold mb-4">Gallery Photos</h2>
+                <div class="grid grid-cols-3 gap-2">
+                    <img src="Images/15d25769c49bc0005a214faa5a0554bd.jpg" alt="Product 1" />
+                    <img src="Images/54f649a309b58113c781e966e74c88da.jpg" alt="Product 2" />
+                    <img src="Images/MF1800-E-Series-01-scaled.jpg" alt="Product 3" />
+                    <img src="Images/7b529efbd2c3de7a800a0890d53cca99.jpg" alt="Product 4" />
+                    <img src="Images/10f30cdafd43e8389175b0d010e50df9.jpg" alt="Product 5" />
+                    <img src="Images/e4f5e44062f41e94bd44c19bb4469414.jpg" alt="Product 6" />
+                </div>
+            </div>
+        </div>
+        <div class="bg-zinc-900 py-4 mt-8">
+            <div class="container mx-auto px-4 flex flex-wrap justify-between items-center">
+                <p class="text-sm">&copy; 2024 KilimoKe. All Rights Reserved.</p>
+                <div class="flex space-x-4 text-sm">
+                    <a href="Home.php" class="hover:underline">Home</a>
+                    <a href="ViewCart.html" class="hover:underline">ViewCart</a>
+                    <a href="Login.html" class="hover:underline">Login</a>
+                    <a href="ContactUs.html" class="hover:underline">Contact Us</a>
+                    <a href="AboutUs.html" class="hover:underline">About Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById('password');
+            const currentType = passwordField.getAttribute('type');
+            const newType = currentType === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', newType);
+        }
+    </script>
+</body>
+</html>

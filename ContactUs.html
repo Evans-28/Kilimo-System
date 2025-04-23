@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Function to submit the form via AJAX
+        function submitForm() {
+            var form = document.getElementById('contactForm');
+            var formData = new FormData(form);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'send_email.php', true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.status === 'success') {
+                        alert('Message sent successfully!');
+                        form.reset(); // Optional: Reset the form after successful submission
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                }
+            };
+            xhr.send(formData);
+        }
+
+        // Function to handle report request
+        function requestReport() {
+            var email = document.querySelector('input[name="email"]').value;
+
+            if (!email) {
+                alert('Please enter your email address.');
+                return;
+            }
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'request_report.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.status === 'success') {
+                        alert('Report has been sent to your email!');
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                }
+            };
+            xhr.send('email=' + encodeURIComponent(email));
+        }
+    </script>
+</head>
+<body class="bg-white dark:bg-black text-zinc-800 dark:text-white">
+<nav class="bg-green-500 dark:bg-zinc-900 py-4">
+    <div class="container mx-auto flex justify-between items-center">
+        <a href="#" class="font-bold text-lg">KilimoKe</a>
+        <div class="hidden md:flex space-x-4">
+            <a href="Home.php" class="hover:underline">Home</a>
+            <a href="ViewCart.html" class="hover:underline">ViewCart</a>
+            <a href="Login.html" class="hover:underline">Login</a>
+            <a href="ContactUs.html" class="hover:underline">Contact Us</a>
+            <a href="AboutUs.html" class="hover:underline">About Us</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mx-auto mt-8">
+</div>
+
+<div
+    class="bg-gradient-to-br from-purple-600 to-pink-500 dark:from-zinc-800 dark:to-zinc-700 min-h-screen flex flex-col items-center justify-center"
+>
+    <h1 class="text-4xl font-extrabold text-white dark:text-zinc-200 mb-4">Contact Us</h1>
+    <div class="bg-white dark:bg-zinc-700 p-6 rounded-lg shadow-lg w-full md:w-1/2 lg:w-1/3">
+        <form id="contactForm" onsubmit="event.preventDefault(); submitForm();" class="space-y-4">
+            <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:bg-gray-800 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+                required
+            />
+            <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:bg-gray-800 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+                required
+            />
+            <textarea
+                name="message"
+                placeholder="Message"
+                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:bg-gray-800 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+                rows="4"
+                required
+            ></textarea>
+            <button
+                type="submit"
+                class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+            >
+                Submit
+            </button>
+            <!-- New Send Report Button -->
+            <button
+                type="button"
+                onclick="requestReport()"
+                class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+            >
+                Send Report
+            </button>
+        </form>
+    </div>
+    <div class="mt-8 text-center text-zinc-700 dark:text-zinc-400">
+        <p>Nairobi, Kenya</p>
+        <p>Email: evandroonyango28@gmail.com</p>
+        <p>Phone: +254 112 051793</p>
+    </div>
+</div>
+
+<footer class="bg-zinc-800 text-white py-8">
+    <div class="container mx-auto px-4 flex flex-wrap justify-between">
+        <div class="w-full md:w-1/4 mb-8 md:mb-0">
+            <h2 class="text-xl font-bold mb-4">About Us</h2>
+            <img src="Images/16cb1ad44488d21a13f74756c54d655d.jpg" alt="KilimoKe Logo" class="mb-1" />
+            <p class="font-semibold">KilimoKe</p>
+            <p>P.O. Box 14133 - 00800 Nairobi, Kenya</p>
+            <div class="flex space-x-4 mt-4">
+                <a href="https://web.facebook.com/?_rdc=1&_rdr" aria-label="Facebook"
+                ><img src="Images/660bcb3e9408cfa1747d2d6e4c8c4526.png" alt="Facebook"
+                    /></a>
+                <a href="https://x.com/?lang=en" aria-label="Twitter"><img src="Images/F1x5VdQX0AA9Sgt.jpeg" alt="Twitter" /></a>
+                <a href="https://www.instagram.com/" aria-label="Instagram"
+                ><img src="Images/Instagram_logo_2016.svg.png" alt="Instagram"
+                    /></a>
+                <a href="https://ke.linkedin.com/" aria-label="LinkedIn"
+                ><img src="Images/linkedin-400850_640-1.webp" alt="LinkedIn"
+                    /></a>
+            </div>
+        </div>
+
+        <div class="w-full md:w-1/4 mb-8 md:mb-0">
+            <h2 class="text-xl font-bold mb-4">Latest Tweets</h2>
+            <p> - Tupigie rununu, we are ready to take your farming to another level. </p>
+            <p> - Products zetu ni legit. </p>
+            <p> - We do deliveries all over the country. </p>
+        </div>
+      
+        <div class="w-full md:w-1/4 mb-8 md:mb-0">
+            <h2 class="text-xl font-bold mb-4">Latest Posts</h2>
+            <p> - Flooding in the western region of the country. </p>
+            <p> - Imported Fertilizer from Russia goes missing. </p>
+            <p> - Farmers in Central Kenya expected to have a bumper harvest this season. </p>
+            <p> - Irrigation schemes become a norm in the North Eastern regions of Kenya. </p>
+        </div>
+          
+        <div class="w-full md:w-1/4 mb-8 md:mb-0">
+            <h2 class="text-xl font-bold mb-4">Gallery Photos</h2>
+            <div class="grid grid-cols-3 gap-2">
+                <img src="Images/15d25769c49bc0005a214faa5a0554bd.jpg" alt="Product 1" />
+                <img src="Images/54f649a309b58113c781e966e74c88da.jpg" alt="Product 2" />
+                <img src="Images/MF1800-E-Series-01-scaled.jpg" alt="Product 3" />
+                <img src="Images/7b529efbd2c3de7a800a0890d53cca99.jpg" alt="Product 4" />
+                <img src="Images/10f30cdafd43e8389175b0d010e50df9.jpg" alt="Product 5" />
+                <img src="Images/e4f5e44062f41e94bd44c19bb4469414.jpg" alt="Product 6" />
+            </div>
+        </div>
+    </div>
+    <div class="bg-zinc-900 py-4 mt-8">
+        <div class="container mx-auto px-4 flex flex-wrap justify-between items-center">
+            <p class="text-sm">&copy; 2024 KilimoKe. All Rights Reserved.</p>
+            <div class="flex space-x-4 text-sm">
+                <a href="Home.php" class="hover:underline">Home</a>
+                <a href="ViewCart.html" class="hover:underline">ViewCart</a>
+                <a href="Login.html" class="hover:underline">Login</a>
+                <a href="ContactUs.html" class="hover:underline">Contact Us</a>
+                <a href="AboutUs.html" class="hover:underline">About Us</a>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
